@@ -260,7 +260,7 @@ int main() {
 
 		if (!file.is_open()) {
 
-			throw "Ошибка при открытии файла с данными пользователей!";
+			throw runtime_error("Ошибка при открытии файла с данными пользователей!");	
 		}
 		else {
 
@@ -279,7 +279,7 @@ int main() {
 
 		if (!file.is_open()) {
 
-			throw "Ошибка при открытии файла с данными изделий!";
+			throw runtime_error("Ошибка при открытии файла с данными изделий!");
 		}
 		else {
 
@@ -297,7 +297,7 @@ int main() {
 
 		if (!file.is_open()) {
 
-			throw "Ошибка при открытии файла с данными затрат!";
+			throw runtime_error("Ошибка при открытии файла с данными затрат!");
 		}
 		else {
 
@@ -349,18 +349,21 @@ int main() {
 		file.close();	
 	
 	}
-	catch (const char * ex) {
+	catch (const runtime_error &ex) {
 
-		cout << ex << endl;
+		cout << ex.what() << endl;
+		system("pause");
+		exit(EXIT_FAILURE);
 	}
 	catch (const exception &ex) {
 
 		cout << "Ошибка! Файл поврежден или заполнен неверно." << endl;
-
+		system("pause");
+		exit(EXIT_FAILURE);
 	}
 	catch (...) {
 
-		throw;
+		exit(EXIT_FAILURE);
 	}
 
 
@@ -1373,7 +1376,7 @@ int main() {
 
 			cout << "Что-то пошло не так..." << endl;
 			system("pause");
-			return 0;
+			exit(EXIT_FAILURE);
 		}
 	}	
 	
